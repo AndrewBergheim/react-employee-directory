@@ -6,24 +6,27 @@ import employees from "./employees"
 class Table extends React.Component{
     constructor(props){
         super(props);
-        this.state = {tableData: employees.meetsCriteria}
+        this.state = {tableData: employees.meetsCriteria, searchVal: 10}
         }
 
-        createTableRows(x){
+        createTableRows(user){
             let data = this.state.tableData;
-            console.log(data)
-            return data.map((user) => {
-                const {age, name, title, salary} = user
-                const key = user.name
-                return (
-                <tr key = {key}>
-                    <td>{age}</td>
-                    <td>{name}</td>
-                    <td>{title}</td>
-                    <td>{salary}</td>
-                </tr>
-                )
-            })
+            //console.log(data)
+            if (user){
+                return data.map((user) => {
+                    const {age, name, title, salary} = user
+                    const key = user.name
+                    return (
+                    <tr key = {key}>
+                        <td>{age}</td>
+                        <td>{name}</td>
+                        <td>{title}</td>
+                        <td>{salary}</td>
+                    </tr>
+                    )
+                })
+            }
+            else{return}
         }
 /*
         stateChange(){
@@ -35,11 +38,11 @@ class Table extends React.Component{
     render() {
     return (  <div id = "tableWrapper">
             <div id = "search">
-                <input id = "searchbar"></input>
+                <input id = "searchbar" type = "text" onKeyUp= {(event) => {this.setState({searchVal: document.getElementById("searchbar").value})}}></input>
                 <div className = "buttonsDiv"> 
                 
-                    <button onClick = {() => (this.setState({tableData: (employees.SalaryOver(this.state.searchVal))}))}>Filter Out Employees Making Less</button>
-                    <button onClick = {() => (this.setState({tableData: (employees.SalaryUnder(this.state.searchVal))}))}>Filter Out Employees Making More</button>
+    <button onClick = {() => (this.setState({tableData: (employees.SalaryUnder(this.state.searchVal))}))}>Filter Out Employees Making Less than {this.state.searchVal}</button>
+    <button onClick = {() => (this.setState({tableData: (employees.SalaryOver(this.state.searchVal))}))}>Filter Out Employees Making More than {this.state.searchVal}</button>
                 </div>
                 <div className = "buttonsDiv"> 
                     <button onClick = {() => (this.setState({tableData: employees.sortByAge()}))}>Sort By Age (Youngest to Oldest)</button>

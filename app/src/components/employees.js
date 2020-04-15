@@ -176,8 +176,7 @@ let employees = {
     SalaryOver: function(val){
         let toReturn = []
         for (let i = 0; i < employees.defArray.length; i++){
-            let x = employees.defArray.find(item => item.salary > val)
-            toReturn.push(x)
+            if (employees.defArray[i].salary > val){toReturn.push(employees.defArray[i])}
         }
         return toReturn
     },
@@ -185,8 +184,7 @@ let employees = {
     SalaryUnder: function(val){
         let toReturn = []
         for (let i = 0; i < employees.defArray.length; i++){
-            let x = employees.defArray.find(item => item.salary < val)
-            toReturn.push(x)
+            if (employees.defArray[i].salary < val){toReturn.push(employees.defArray[i])}
         }
         return toReturn
     }
