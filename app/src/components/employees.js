@@ -95,97 +95,100 @@ let employees = {
 
     sortByAge: function(){
         let critArray = [];
-        this.meetsCriteria.empty()
+        let toReturn = []
         // populate array with unsorted values
-        for (let i = 0; i< this.defArray.length; i++){
-            critArray.push(this.defArray[i].age)
+        for (let i = 0; i< employees.defArray.length; i++){
+            critArray.push(employees.defArray[i].age)
         }
         //sorts array in ascending order 
-        critArray.sort()
+        critArray.sort((a,b) => a - b)
 
         //uses the criteria array to sort objects
         for (let i = 0; i < critArray.length; i++){
-            let next = this.defArray.find(item => item.age === critArray[i])
-            this.meetsCriteria.push(next)
+            let next = employees.defArray.find(item => item.age === critArray[i])
+            toReturn.push(next)
             
         }
         //returns sorted array
-        return this.meetsCriteria
+        return toReturn
     },
 
     sortByAgeRev: function(){
         let critArray = [];
-        this.meetsCriteria.empty()
+        let toReturn = []
         // populate array with unsorted values
-        for (let i = 0; i< this.defArray.length; i++){
-            critArray.push(this.defArray[i].age)
+        for (let i = 0; i< employees.defArray.length; i++){
+            critArray.push(employees.defArray[i].age)
         }
         //sorts array in ascending order 
         critArray.sort((a,b) => b - a)
 
         //uses the criteria array to sort objects
         for (let i = 0; i < critArray.length; i++){
-            let next = this.defArray.find(item => item.age === critArray[i])
-            this.meetsCriteria.push(next)
+            let next = employees.defArray.find(item => item.age === critArray[i])
+            toReturn.push(next)
             
         }
         //returns sorted array
-        return this.meetsCriteria
+        return toReturn
     },
 
     sortByName: function(){
         let critArray = [];
-        this.meetsCriteria.empty()
+        let toReturn = []
         // populate array with unsorted values
-        for (let i = 0; i< this.defArray.length; i++){
-            critArray.push(this.defArray[i].name)
+        for (let i = 0; i< employees.defArray.length; i++){
+            critArray.push(employees.defArray[i].name)
         }
         //sorts array in ascending order 
         critArray.sort()
 
         //uses the criteria array to sort objects
         for (let i = 0; i < critArray.length; i++){
-            let next = this.defArray.find(item => item.name === critArray[i])
-            this.meetsCriteria.push(next)
+            let next = employees.defArray.find(item => item.name === critArray[i])
+            toReturn.push(next)
             
         }
         //returns sorted array
-        return this.meetsCriteria
+        return toReturn
     },
 
     sortByNameRev: function(){
-        this.meetsCriteria.empty()
         let critArray = [];
-        this.meetsCriteria.empty()
+        let toReturn = []
         // populate array with unsorted values
-        for (let i = 0; i< this.defArray.length; i++){
-            critArray.push(this.defArray[i].name)
+        for (let i = 0; i< employees.defArray.length; i++){
+            critArray.push(employees.defArray[i].name)
         }
         //sorts array in ascending order 
-        critArray.sort((a,b) => b - a)
+        critArray.sort()
 
         //uses the criteria array to sort objects
-        for (let i = 0; i < critArray.length; i++){
-            let next = this.defArray.find(item => item.name === critArray[i])
-            this.meetsCriteria.push(next)
+        for (let i = critArray.length-1; i > -1; i--){
+            let next = employees.defArray.find(item => item.name === critArray[i])
+            toReturn.push(next)
             
         }
         //returns sorted array
-        return this.meetsCriteria
+        return toReturn
     },
 
     SalaryOver: function(val){
-        this.meetsCriteria.empty()
-        for (let i = 0; i < this.defArray.length; i++){
-            this.defArray.find(item => item.salary > val)
+        let toReturn = []
+        for (let i = 0; i < employees.defArray.length; i++){
+            let x = employees.defArray.find(item => item.salary > val)
+            toReturn.push(x)
         }
+        return toReturn
     },
     
     SalaryUnder: function(val){
-        this.meetsCriteria.empty()
-        for (let i = 0; i < this.defArray.length; i++){
-            this.defArray.find(item => item.salary < val)
+        let toReturn = []
+        for (let i = 0; i < employees.defArray.length; i++){
+            let x = employees.defArray.find(item => item.salary < val)
+            toReturn.push(x)
         }
+        return toReturn
     }
 }
 
